@@ -17,6 +17,8 @@ public class Main {
         // read events
         List<EventDetails> events = LogFileReader.getEvents(fileName);
         // compare logs and generate report
-        ReportGenerator.generateReport(events);
+        final var report = ReportGenerator.generateReport(events);
+        // publish report to console
+        ReportGenerator.publishToConsole(report);
     }
 }

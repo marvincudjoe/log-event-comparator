@@ -5,7 +5,8 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.FileNotFoundException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.monitor.TestUtils.VALID_LOG_FILE;
 
 class MainTest {
@@ -18,7 +19,7 @@ class MainTest {
 
     @Test
     void invalidFilePath() {
-        System.setIn(new ByteArrayInputStream(VALID_LOG_FILE.substring(2,3).getBytes()));
+        System.setIn(new ByteArrayInputStream(VALID_LOG_FILE.substring(2, 3).getBytes()));
         assertThrows(FileNotFoundException.class, () -> Main.main(new String[]{}));
     }
 }

@@ -6,7 +6,6 @@ import java.io.ByteArrayInputStream;
 import java.io.FileNotFoundException;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.monitor.TestUtils.INVALID_LOG_FILE;
 import static org.monitor.TestUtils.VALID_LOG_FILE;
 
 class MainTest {

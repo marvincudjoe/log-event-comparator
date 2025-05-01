@@ -14,6 +14,18 @@ public final class PatternMatcher {
     private static final Pattern PATTERN = Pattern.compile(REGEX);
     private static final String TIME_STAMP_PATTERN = "HH:mm:ss.SSS";
 
+    /**
+     * Extracts events and maps to an Event object.
+     *
+     * <p>
+     *     given input "12:00:00.000 1000 job started" <br/>
+     *     with example regex "([0-2]\d:[0-5]\d:[0-5]\d\.\d+([+-][0-2]\d|))\s+(\d+)\s+((.+)$)" with zone check <br>
+     *     matcher group ["12:00:00.000","Z" ,"1000","job started"]
+     * <p>
+     * </p>
+     * @param event A well-formed log event
+     * @return An EventDetails object
+     */
     public static EventDetails extractAndMapEvent(String event) {
         Matcher matcher = PATTERN.matcher(event);
         if (matcher.matches()) {

@@ -12,16 +12,16 @@ public class ReportGenerator {
     public static final String JOB_TIME_DIFF_MS = "pid=%s took more than %s minutes. diff=%ss between start and end";
     /**
      * With a given list of EventDetails,
-     * the list is sorted by pid then timestamp if pid is known.
+     * the list is sorted by pid then date if pid is known.
      * For each event, we store the START event then compare it to the END event (known if PID is a key in the map)
      *
      * @param events List of valid log events
      */
     public static Map<LogLevel, List<String>> generateReport(@NonNull final List<EventDetails> events) {
 
-        // Sort by pid. If pid is known, sort by timestamp
+        // Sort by pid. If pid is known, sort by date
         List<EventDetails> eventsCopy = new ArrayList<>(events);
-        eventsCopy.sort(Comparator.comparing(EventDetails::getPid).thenComparing(EventDetails::getTimeStamp));
+        eventsCopy.sort(Comparator.comparing(EventDetails::getPid).thenComparing(EventDetails::getDateTime));
         final Map<LogLevel, List<String>> report = new EnumMap<>(LogLevel.class);
         final long fiveMinInSecs = 5L * 60;
         final long tenMinInSecs = 10L * 60;
@@ -30,7 +30,7 @@ public class ReportGenerator {
             if (startEvents.containsKey(event.getPid())) {
                 // compare by time
                 final var start = startEvents.get(event.getPid());
-                final var diffInSecs = Duration.between(start.getTimeStamp(), event.getTimeStamp()).toSeconds();
+                final var diffInSecs = Duration.between(start.getDateTime(), event.getDateTime()).toSeconds();
                 if (diffInSecs > tenMinInSecs) {
                     // event is marked as "error"
                     // when the time diff between event start and end difference is greater than 10

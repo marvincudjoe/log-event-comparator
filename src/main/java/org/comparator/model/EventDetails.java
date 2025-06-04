@@ -1,24 +1,29 @@
 package org.comparator.model;
 
-
 import lombok.Getter;
 import lombok.NonNull;
 
-import java.time.LocalTime;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 @Getter
 public class EventDetails {
-    private static final String TIME_STAMP_PATTERN = "HH:mm:ss.SSS";
-
-    private final LocalTime timeStamp;
+    public static final String INVALID_DATE_TIME_FORMAT = "Invalid date time format=%s. Expected format is ISO_DATE_TIME 8601 (e.g., 2021-01-01T12:00:00Z)";
+    private final OffsetDateTime dateTime;
     private final int pid;
     private final String description;
 
-    public EventDetails(@NonNull String timeStamp, @NonNull String pid, @NonNull String description) {
-        final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(TIME_STAMP_PATTERN);
-        this.timeStamp = LocalTime.parse(timeStamp.strip(), formatter);
+    public EventDetails(@NonNull String dateTime, @NonNull String pid, @NonNull String description) {
+        final DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
+        try {
+            this.dateTime = OffsetDateTime.parse(dateTime, formatter);
+        } catch (Exception e) {
+            throw new DateTimeException(String.format(INVALID_DATE_TIME_FORMAT, dateTime), e);
+        }
+        if (!pid.matches("\\d+")) {
+            throw new NumberFormatException("Invalid pid format=" + pid);
+        }
         this.pid = Integer.parseInt(pid);
         this.description = description;
     }
@@ -31,18 +36,17 @@ public class EventDetails {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        EventDetails eventDetails = (EventDetails) o;
-        return eventDetails.timeStamp.equals(timeStamp) && eventDetails.pid == pid && eventDetails.description.equals(description);
+        final EventDetails eventDetails = (EventDetails) o;
+        return eventDetails.dateTime.equals(dateTime) && eventDetails.pid == pid && eventDetails.description.equals(description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(timeStamp, pid, description);
+        return Objects.hash(dateTime, pid, description);
     }
 
     @Override
     public String toString() {
-        return String.format(timeStamp.toString(), pid, description);
+        return dateTime.toString() + " " + pid + " " + description;
     }
-
 }

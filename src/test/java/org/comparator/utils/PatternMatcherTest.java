@@ -1,10 +1,10 @@
-package org.monitor.utils;
+package org.comparator.utils;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.monitor.model.EventDetails;
+import org.comparator.model.EventDetails;
 
-import static org.monitor.TestUtils.*;
+import static org.comparator.TestUtils.*;
 
 class PatternMatcherTest {
 

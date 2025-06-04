@@ -1,2 +1,2 @@
-rootProject.name = "log-monitor-task"
+rootProject.name = "log-event-comparator"
 

@@ -1,8 +1,8 @@
-package org.monitor;
+package org.comparator;
 
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
-import org.monitor.model.EventDetails;
+import org.comparator.model.EventDetails;
 
 import java.time.Duration;
 import java.util.*;

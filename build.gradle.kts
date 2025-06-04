@@ -5,7 +5,7 @@ plugins {
     id("application")
 }
 
-group = "org.monitor"
+group = "org.comparator"
 version = "1.0-SNAPSHOT"
 
 repositories {
@@ -30,7 +30,7 @@ dependencies {
 
 
 application {
-    mainClass = "org.monitor.Main"
+    mainClass = "org.comparator.Main"
 }
 
 // https://stackoverflow.com/a/77202968

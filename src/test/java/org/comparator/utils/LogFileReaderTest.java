@@ -1,14 +1,14 @@
-package org.monitor.utils;
+package org.comparator.utils;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.monitor.model.EventDetails;
+import org.comparator.model.EventDetails;
 
 import java.io.FileNotFoundException;
 import java.util.List;
 
-import static org.monitor.TestUtils.MALFORMED_EVENTS_FILE;
-import static org.monitor.TestUtils.WELL_FORMED_EVENTS_FILE;
+import static org.comparator.TestUtils.MALFORMED_EVENTS_FILE;
+import static org.comparator.TestUtils.WELL_FORMED_EVENTS_FILE;
 
 class LogFileReaderTest {
 

@@ -1,14 +1,14 @@
-package org.monitor;
+package org.comparator;
 
 import java.time.Duration;
 import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.monitor.model.EventDetails;
+import org.comparator.model.EventDetails;
 
-import static org.monitor.ReportGenerator.JOB_TIME_DIFF_MS;
-import static org.monitor.TestUtils.*;
+import static org.comparator.ReportGenerator.JOB_TIME_DIFF_MS;
+import static org.comparator.TestUtils.*;
 
 class ReportGeneratorTest {
 

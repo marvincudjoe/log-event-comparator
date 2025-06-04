@@ -1,8 +1,8 @@
-package org.monitor;
+package org.comparator;
 
 import lombok.extern.slf4j.Slf4j;
-import org.monitor.model.EventDetails;
-import org.monitor.utils.LogFileReader;
+import org.comparator.model.EventDetails;
+import org.comparator.utils.LogFileReader;
 
 import java.io.FileNotFoundException;
 import java.util.List;

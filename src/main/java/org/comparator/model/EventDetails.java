@@ -1,4 +1,4 @@
-package org.monitor.model;
+package org.comparator.model;
 
 
 import lombok.Getter;

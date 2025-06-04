@@ -1,9 +1,9 @@
-package org.monitor.utils;
+package org.comparator.utils;
 
 import java.util.Optional;
 
 import lombok.extern.slf4j.Slf4j;
-import org.monitor.model.EventDetails;
+import org.comparator.model.EventDetails;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

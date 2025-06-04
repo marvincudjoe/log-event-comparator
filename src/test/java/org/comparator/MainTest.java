@@ -1,4 +1,4 @@
-package org.monitor;
+package org.comparator;
 
 import org.junit.jupiter.api.Test;
 
@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.monitor.TestUtils.WELL_FORMED_EVENTS_FILE;
+import static org.comparator.TestUtils.WELL_FORMED_EVENTS_FILE;
 
 class MainTest {
 

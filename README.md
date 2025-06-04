@@ -1,7 +1,6 @@
-# log-monitor-task
+# log-event-comparator
 
-A simple log monitoring application which reads a log file,
-measures the duration of a complete job and generates a report detailing and checks for specific patterns.
+A simple log event analyser. Reads a `.log` file, processes the file based on rules and generates a report.
 
 ## Requirements
 

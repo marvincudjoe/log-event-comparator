@@ -1,4 +1,4 @@
-package org.monitor;
+package org.comparator;
 
 import java.io.File;
 

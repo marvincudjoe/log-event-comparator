@@ -1,7 +1,8 @@
-import org.gradle.api.JavaVersion.VERSION_17
+import org.gradle.api.JavaVersion.VERSION_21
 
 plugins {
     id("java")
+    id("application")
 }
 
 group = "org.monitor"
@@ -11,7 +12,7 @@ repositories {
     mavenCentral()
 }
 
-val javaVersion = VERSION_17.majorVersion.toInt()
+val javaVersion = VERSION_21.majorVersion.toInt()
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(javaVersion)
@@ -26,6 +27,17 @@ dependencies {
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
 }
+
+
+application {
+    mainClass = "org.monitor.Main"
+}
+
+// https://stackoverflow.com/a/77202968
+tasks.getByName("run", JavaExec::class) {
+    standardInput = System.`in`
+}
+
 
 tasks.test {
     useJUnitPlatform()

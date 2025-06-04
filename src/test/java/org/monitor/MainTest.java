@@ -7,19 +7,19 @@ import java.io.FileNotFoundException;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.monitor.TestUtils.VALID_LOG_FILE;
+import static org.monitor.TestUtils.WELL_FORMED_EVENTS_FILE;
 
 class MainTest {
 
     @Test
     void happyPath() {
-        System.setIn(new ByteArrayInputStream(VALID_LOG_FILE.getBytes()));
+        System.setIn(new ByteArrayInputStream(WELL_FORMED_EVENTS_FILE.getBytes()));
         assertDoesNotThrow(() -> Main.main(new String[]{}));
     }
 
     @Test
-    void invalidFilePath() {
-        System.setIn(new ByteArrayInputStream(VALID_LOG_FILE.substring(2, 3).getBytes()));
+    void givenUnknownFilePath_throwException() {
+        System.setIn(new ByteArrayInputStream(WELL_FORMED_EVENTS_FILE.substring(2, 3).getBytes()));
         assertThrows(FileNotFoundException.class, () -> Main.main(new String[]{}));
     }
 }

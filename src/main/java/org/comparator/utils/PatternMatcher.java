@@ -30,7 +30,7 @@ public final class PatternMatcher {
      * @return An EventDetails object
      */
     public static Optional<EventDetails> extractAndMapEvent(String event) {
-        Matcher matcher = PATTERN.matcher(event);
+        final Matcher matcher = PATTERN.matcher(event);
         if (matcher.matches()) {
             final String dateTime = matcher.group(1);
             final String pidStr = matcher.group(3);

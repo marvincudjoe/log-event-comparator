@@ -21,29 +21,29 @@ public class ReportGenerator {
 
         // Sort by pid. If pid is known, sort by date
         List<EventDetails> eventsCopy = new ArrayList<>(events);
-        eventsCopy.sort(Comparator.comparing(EventDetails::getPid).thenComparing(EventDetails::getDateTime));
+        eventsCopy.sort(Comparator.comparing(EventDetails::pid).thenComparing(EventDetails::dateTime));
         final Map<LogLevel, List<String>> report = new EnumMap<>(LogLevel.class);
         final long fiveMinInSecs = 5L * 60;
         final long tenMinInSecs = 10L * 60;
         final Map<Integer, EventDetails> startEvents = new HashMap<>();
         for (EventDetails event : eventsCopy) {
-            if (startEvents.containsKey(event.getPid())) {
+            if (startEvents.containsKey(event.pid())) {
                 // compare by time
-                final var start = startEvents.get(event.getPid());
-                final var diffInSecs = Duration.between(start.getDateTime(), event.getDateTime()).toSeconds();
+                final var start = startEvents.get(event.pid());
+                final var diffInSecs = Duration.between(start.dateTime(), event.dateTime()).toSeconds();
                 if (diffInSecs > tenMinInSecs) {
                     // event is marked as "error"
                     // when the time diff between event start and end difference is greater than 10
                     report.computeIfAbsent(LogLevel.ERROR, k -> new ArrayList<>())
-                            .add(String.format(JOB_TIME_DIFF_MS, event.getPid(), 10, diffInSecs));
+                            .add(String.format(JOB_TIME_DIFF_MS, event.pid(), 10, diffInSecs));
                 } else if (diffInSecs > fiveMinInSecs && diffInSecs < tenMinInSecs) {
                     // event is marked as "warn"
                     // when the time diff between event start and end is longer than 5 minutes but less than 10 minutes
                     report.computeIfAbsent(LogLevel.WARN, k -> new ArrayList<>())
-                            .add(String.format(JOB_TIME_DIFF_MS, event.getPid(), 5, diffInSecs));
+                            .add(String.format(JOB_TIME_DIFF_MS, event.pid(), 5, diffInSecs));
                 }
             } else {
-                startEvents.put(event.getPid(), event);
+                startEvents.put(event.pid(), event);
             }
         }
         return report;

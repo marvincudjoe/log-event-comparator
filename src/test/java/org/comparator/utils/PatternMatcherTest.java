@@ -10,7 +10,7 @@ class PatternMatcherTest {
 
     @Test
     void extractAndMapEvent() {
-        var expected = new EventDetails(EVENT_DATE_TIME_STR, EVENT_PID_STR, EVENT_DESCRIPTION);
+        var expected = EventDetails.map(EVENT_DATE_TIME_STR, EVENT_PID_STR, EVENT_DESCRIPTION);
         var res = PatternMatcher.extractAndMapEvent(expected.toString());
         Assertions.assertTrue(res.isPresent());
         Assertions.assertEquals(expected, res.get());

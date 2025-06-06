@@ -22,8 +22,7 @@ public final class PatternMatcher {
      *
      * <p>
      * given input "2021-01-01T11:50:59.000Z 998 job ended" <br/>
-     * with example regex "(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}(Z|[+\-]\d{2}:\d{2}))\s+(\d+)\s+((.+)$)"<br>
-     * matcher group ["2021-01-01T11:50:59.000Z", "Z", "1000","job started"]
+     * matcher group ["2021-01-01T11:50:59.000", "Z", "998","job ended"]
      * </p>
      *
      * @param event A well-formed log event
@@ -35,7 +34,7 @@ public final class PatternMatcher {
             final String dateTime = matcher.group(1);
             final String pidStr = matcher.group(3);
             final String desc = matcher.group(4).trim();
-            return Optional.of(new EventDetails(dateTime, pidStr, desc));
+            return Optional.of(EventDetails.map(dateTime, pidStr, desc));
         } else {
             log.debug(INCORRECT_LOG_FORMAT, event);
             return Optional.empty();

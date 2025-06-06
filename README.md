@@ -11,7 +11,7 @@ A simple log event analyser. Reads a `.log` file, processes the file based on ru
 On Linux:
 
 ```shell
-./gradlew run
+./gradlew run --args='--file=path/to/logfile.log'
 ```
 
 On Windows:

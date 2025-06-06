@@ -16,7 +16,7 @@ import java.util.stream.Stream;
 @Slf4j
 public class LogFileReader {
 
-    public static final String INVALID_PATH_FILE_PROVIDED = "Unable to locate file=%s. Input must be a valid absolute path";
+    public static final String INVALID_PATH_FILE_PROVIDED = "Unable to locate file=%s. Provided path must be a valid absolute path";
     public static final String UNPROCESSABLE_FILE = "Unable to process logs in file={}";
 
     private LogFileReader() {

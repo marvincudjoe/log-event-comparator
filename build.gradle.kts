@@ -33,12 +33,6 @@ application {
     mainClass = "org.comparator.Main"
 }
 
-// https://stackoverflow.com/a/77202968
-tasks.getByName("run", JavaExec::class) {
-    standardInput = System.`in`
-}
-
-
 tasks.test {
     useJUnitPlatform()
 }

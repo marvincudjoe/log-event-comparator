@@ -2,7 +2,6 @@ package org.comparator;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayInputStream;
 import java.io.FileNotFoundException;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -13,13 +12,11 @@ class MainTest {
 
     @Test
     void happyPath() {
-        System.setIn(new ByteArrayInputStream(WELL_FORMED_EVENTS_FILE.getBytes()));
-        assertDoesNotThrow(() -> Main.main(new String[]{}));
+        assertDoesNotThrow(() -> Main.main(new String[]{"--file=" + WELL_FORMED_EVENTS_FILE}));
     }
 
     @Test
     void givenUnknownFilePath_throwException() {
-        System.setIn(new ByteArrayInputStream(WELL_FORMED_EVENTS_FILE.substring(2, 3).getBytes()));
-        assertThrows(FileNotFoundException.class, () -> Main.main(new String[]{}));
+        assertThrows(FileNotFoundException.class, () -> Main.main(new String[]{"--file=" + "g.log"}));
     }
 }
